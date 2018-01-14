@@ -4,14 +4,16 @@ var elCLass = '.page-inner'
 
 var renderMath = `
 <script>
-renderMathInElement(document.querySelector('.page-inner'), {
-  delimiters: [
-    {left: "$$", right: "$$", display: true},
-    {left: "\\[", right: "\\]", display: true},
-    {left: "$", right: "$", display: false},
-    {left: "\\(", right: "\\)", display: false},
-  ],
-});
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.querySelector('.page-inner'), {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "\\[", right: "\\]", display: true},
+      {left: "$", right: "$", display: false},
+      {left: "\\(", right: "\\)", display: false},
+    ],
+  })
+}
 </script>
 `
 
