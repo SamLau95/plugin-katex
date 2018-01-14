@@ -1,6 +1,7 @@
 var katex = require('katex')
 
 function process(blk, isInline) {
+  console.log(blk, isInline)
   var tex = blk.body
   var output = ''
 
