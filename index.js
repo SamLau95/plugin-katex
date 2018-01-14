@@ -5,6 +5,7 @@ var elCLass = '.page-inner'
 var renderMath = `
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+  console.log("Rendering math...");
   renderMathInElement(document.querySelector('.page-inner'), {
     delimiters: [
       {left: "$$", right: "$$", display: true},
@@ -28,7 +29,7 @@ module.exports = {
     css: ['katex.min.css'],
     js: ['katex.min.js', 'auto-render.min.js'],
   },
-  
+
   hooks: {
     page: function(page) {
       page.content += renderMath
