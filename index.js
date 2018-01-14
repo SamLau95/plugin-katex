@@ -5,7 +5,7 @@ var elCLass = '.page-inner'
 var renderMath = `
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("Rendering math...");
+  console.log("Rendering math...")
   renderMathInElement(document.querySelector('.page-inner'), {
     delimiters: [
       {left: "$$", right: "$$", display: true},
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
       {left: "\\(", right: "\\)", display: false},
     ],
   })
-}
+})
 </script>
 `
 
@@ -34,6 +34,6 @@ module.exports = {
     page: function(page) {
       page.content += renderMath
       return page
-    }
-  }
+    },
+  },
 }
