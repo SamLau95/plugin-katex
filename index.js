@@ -1,51 +1,36 @@
 var katex = require('katex')
 
-function process(blk, isInline) {
-  console.log(blk, isInline)
-  var tex = blk.body
-  var output = ''
+var elCLass = '.page-inner'
 
-  try {
-    output = katex.renderToString(tex, {
-      displayMode: !isInline,
-    })
-  } catch (e) {
-    console.error(e)
-    output = String(e)
-  }
-
-  return output
-}
+var renderMath = `
+<script>
+renderMathInElement(document.querySelector('.page-inner'), {
+  delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "\\[", right: "\\]", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "\\(", right: "\\)", display: false},
+  ],
+});
+</script>
+`
 
 module.exports = {
   book: {
     assets: './static',
     css: ['katex.min.css'],
+    js: ['katex.min.js', 'auto-render.min.js'],
   },
   ebook: {
     assets: './static',
     css: ['katex.min.css'],
+    js: ['katex.min.js', 'auto-render.min.js'],
   },
-  blocks: {
-    math: {
-      shortcuts: {
-        parsers: ['markdown', 'asciidoc', 'restructuredtext'],
-        start: '$$',
-        end: '$$',
-      },
-      process: function(blk) {
-        return process(blk, false)
-      },
-    },
-    math_inline: {
-      shortcuts: {
-        parsers: ['markdown', 'asciidoc', 'restructuredtext'],
-        start: '$',
-        end: '$',
-      },
-      process: function(blk) {
-        return process(blk, true)
-      },
-    },
-  },
+  
+  hooks: {
+    page: function(page) {
+      page.content += renderMath
+      return page
+    }
+  }
 }
